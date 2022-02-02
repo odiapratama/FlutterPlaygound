@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_playground/components/categories.dart';
 import 'package:flutter_playground/models/categories.dart';
+import 'package:flutter_playground/widgets/shopcarousel.dart';
 import 'package:page_transition/page_transition.dart';
 
 class Home extends StatefulWidget {
@@ -59,7 +60,8 @@ class _HomeState extends State<Home> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      CategoriesComponent(title: "Categories", categories: categories)
+                      CategoriesComponent(title: "Categories", categories: categories),
+                      ShopCarousel()
                     ],
                   ),
                 ),
