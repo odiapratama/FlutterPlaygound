@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:flutter_playground/components/categories.dart';
+import 'package:flutter_playground/models/categories.dart';
 import 'package:page_transition/page_transition.dart';
 
 class Home extends StatefulWidget {
@@ -10,6 +12,16 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int currentIndex = 0;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final categories = [
+    Category(image: "https://cdn-icons.flaticon.com/png/512/3405/premium/3405802.png?token=exp=1643814247~hmac=0da86cd4aae2ab4b2a24b41c61d3fdd2", title: "All"),
+    Category(image: "https://cdn-icons.flaticon.com/png/512/717/premium/717492.png?token=exp=1643814381~hmac=f8e379dbdf942b7d07e862c28d61a6e1", title: "Dress"),
+    Category(image: "https://cdn-icons.flaticon.com/png/512/5005/premium/5005732.png?token=exp=1643814444~hmac=25dc17641932636b042baadfeecf75ee", title: "Gadget"),
+    Category(image: "https://cdn-icons.flaticon.com/png/512/2887/premium/2887417.png?token=exp=1643814493~hmac=e1e2498403fce89722d95b8c8bfe322c", title: "Home"),
+    Category(image: "https://cdn-icons-png.flaticon.com/512/3282/3282468.png", title: "Baby"),
+    Category(image: "https://cdn-icons.flaticon.com/png/512/2528/premium/2528479.png?token=exp=1643814669~hmac=a6db92d7b53039f481573bc842cdb5a6", title: "Fashion"),
+    Category(image: "https://cdn-icons.flaticon.com/png/512/2136/premium/2136302.png?token=exp=1643814725~hmac=e479bceb374d8936f87b34af76951a7b", title: "Jewel"),
+    Category(image: "https://cdn-icons-png.flaticon.com/512/29/29302.png", title: "Book")
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +32,43 @@ class _HomeState extends State<Home> {
           key: _scaffoldKey,
           drawer: Drawer(child: leftDrawerMenu()),
           appBar: buildAppBar(context),
+          bottomNavigationBar: TabBar(
+            tabs: [
+              Tab(
+                icon: new Icon(Icons.home),
+              ),
+              Tab(
+                icon: new Icon(Icons.attach_money),
+              ),
+              Tab(
+                icon: new Icon(Icons.shopping_cart),
+              ),
+              Tab(
+                icon: new Icon(Icons.account_circle),
+              )
+            ],
+            labelColor: Theme.of(context).primaryColor,
+            unselectedLabelColor: Colors.grey,
+            indicatorSize: TabBarIndicatorSize.label,
+            indicatorPadding: EdgeInsets.all(8.0),
+            indicatorColor: Theme.of(context).primaryColor,
+          ),
+          body: TabBarView(
+            children: [
+              Container(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      CategoriesComponent(title: "Categories", categories: categories)
+                    ],
+                  ),
+                ),
+              ),
+              CategoriesComponent(title: "Categories", categories: categories),
+              CategoriesComponent(title: "Categories", categories: categories),
+              CategoriesComponent(title: "Categories", categories: categories)
+            ],
+          ),
         ));
   }
 
